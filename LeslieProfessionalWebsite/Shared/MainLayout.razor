@@ -1,0 +1,15 @@
+﻿@inherits LayoutComponentBase
+
+<NavigationMenu />
+
+<main class="h-100">
+    <div class="h-100" style="display: grid">
+        <div class="h-100" style="grid-column: 1; grid-row: 1; z-index: 1;">
+            <article class="content px-4">
+                @Body
+            </article>
+        </div>
+        <div class="h-100 background" style="grid-column: 1; grid-row: 1; z-index: 0;">
+        </div>
+    </div>
+</main>

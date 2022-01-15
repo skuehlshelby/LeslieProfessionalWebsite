@@ -1,0 +1,41 @@
+﻿@page "/Publications"
+@inject ICollection<Publication> publications;
+
+<div class="row mx-auto justify-content-center align-items-center flex-column">
+    @foreach (var publication in @publications)
+    {
+        <div class="card rounded m-5 p-3 bg-dark bg-opacity-75 mw-80">
+            <div class="card-header">
+                <div class="container-fluid m-0 p-0">
+                    <div class="row justify-content-between">
+                        <h2 class="col col-10 card-title text-light text-start">
+                            @publication.Title
+                        </h2>
+                        @if (publication.IsOpenAccess)
+                        {
+                            <a class="col card-link text-end align-text-top" href="files/@publication.DownloadLink" download="@(publication.Title + ".pdf")" target="_top">
+                                <span class="oi oi-cloud-download" aria-hidden="true"/>
+                            </a>
+                        }
+                    </div>
+                    <div class="row">
+                        <h5 class="card-subtitle text-light text-start fst-italic">
+                            @{string[] authors = publication.Authors.Split("Leslie Forero");}
+                            @authors[0]<a class="card-link text-decoration-none" href="@publication.URL" target="_blank" style="color: cornflowerblue">Leslie Forero</a>@authors[1]
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-light">
+                    @publication.Abstract
+                </p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text text-light">
+                    Published @publication.DatePublished.ToString("MMM. d yyyy"), @publication.Journal
+                </p>
+            </div>
+        </div>
+    }
+</div>
